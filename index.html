@@ -143,13 +143,13 @@
       if (amount > 0) {
         let value = dicevalue(1,6);
         dices[dice].dataset.value = value;
-        dices[dice].style.translate = `${(Math.random() * 10) -5}px ${(Math.random() * 10) -5}px`;
+        dices[dice].style.transform = `translate(${((Math.random() * 10) - 5)|0}px, ${((Math.random() * 10) -5)|0}px)`;
         dices[dice].className = "dice dice-" + value;
         window.setTimeout('shuffle('+dice+', '+amount+')', 100);
       } else {
         rollbutton.disabled = false;
         dices.forEach(d => {
-          d.style.translate = `0 0`;
+          d.style.transform = `translate(0,0)`;
         });
       }
     };
