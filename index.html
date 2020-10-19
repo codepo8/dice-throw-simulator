@@ -108,8 +108,8 @@
   <footer>
     <p>Written by <a href="https://christianheilmann.com">Chris Heilmann</a>, available for feedback on <a href="https://github.com/codepo8/dice-throw-simulator/">GitHub</a></p>
   </footer>
-  <script>
 
+<script>
     const addbutton = document.querySelector('#add');
     const removebutton = document.querySelector('#remove');
     const rollbutton = document.querySelector('#roll');
@@ -134,6 +134,7 @@
       list.innerHTML = out;
       list.style.fontSize = 65/amount  + 'vw'
     };
+
     const dicevalue = (min, max) => {
       return (Math.floor(Math.pow(10,14)*Math.random()*Math.random())%(max-min+1))+min;
     }
@@ -173,7 +174,11 @@
       if (t.nodeName === 'LABEL') {
         t.dataset.active = t.querySelector('input').checked;
       }
+      rollbutton.disabled = 
+          document.querySelectorAll('.dice').length ===
+          document.querySelectorAll('[data-active=false]').length;
     }
+    
     const adddice = e => {
       numberofdices++;
       paintdices(numberofdices);
