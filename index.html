@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎲 Dice Throw Simulator</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎲</text></svg>">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 2em;
+      background: #333;
+    }
+    h1 {
+      font-size:2.5vw;
+      font-weight: normal;
+      color: blanchedalmond;
+    }
+    ul {
+      background: #eeeeee;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+    }
+    label {
+      position: relative;
+    }
+    label[data-active=false]:after {
+      content: '🔒';
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      font-size: 4vw;
+      text-align: center;
+      top: 0;
+      left: 0;
+      background: rgba(238,238,238,0.7);
+    }
+    li {
+      padding: 0;
+      margin: 0 5px;
+      list-style: none;
+    }
+    li input[type=checkbox] {
+      position: absolute;
+      left: -100vw;
+    }
+    #buttons {
+      background: #eee;
+      display: flex;
+      justify-content: stretch;
+    }
+    button {
+      flex: 1 0;
+      margin: 0 5px;
+      font-family: inherit;
+      font-size: 2vw;
+      padding: 5px;
+      cursor: pointer;
+      background:lightgray;
+      border: none;
+    }
+    #roll {
+      background:lawngreen;
+      flex: 3;
+    }
+    .info {
+      background: #eee;
+      font-size: 2vw;
+      padding: 1em .2em;
+      margin: 0;
+      text-align: center;
+    }
+    #roll:disabled {
+      opacity: 0.6;
+    }
+    footer {
+      display: block;
+      text-align:right;
+      color: #999;
+      padding: 10px;
+    }
+    footer a {color: #ccc;}
+    /*
+    * Dice.css v1.0
+    * Code - MIT License - https://github.com/diafygi/dice-css
+    * Images - Public Domain - https://openclipart.org/detail/105931/sixsided-dice-faces-lio-01
+    */
+    .dice{display:inline-block;min-height:1em;padding-left:1em;background-size:1em;background-repeat:no-repeat;}
+    .dice-1{background-image: url("data:image/svg+xml,%3Csvg xmlns='http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg' version='1.1' viewBox='0 0 76.5 76.5' height='21.6' width='21.6'%3E%3Cg transform='translate(113.25%2C-494.1)'%3E%3Cg transform='matrix(0.5%2C0%2C0%2C0.5%2C-406.5%2C374.7)'%3E%3Crect x='588' y='240.4' width='150' height='150' ry='50' rx='50' style='fill%3A%23fff%3Bstroke-width%3A3%3Bstroke%3A%23000'%2F%3E%3Ccircle transform='translate(337.5%2C87.5)' cx='325' cy='227.4' r='12.5' style='fill%3A%23000%3Bstroke-width%3A3%3Bstroke%3A%23000'%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E ");}
+    .dice-2{background-image: url("data:image/svg+xml,%3Csvg xmlns='http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg' version='1.1' viewBox='0 0 76.5 76.5' height='21.6' width='21.6'%3E%3Cstyle%3E.s0%7Bfill%3A%23000%3Bstroke-width%3A3%3Bstroke%3A%23000%3B%7D%3C%2Fstyle%3E%3Cg transform='translate(109.9%2C-505.1)'%3E%3Cg transform='matrix(0.5%2C0%2C0%2C0.5%2C-415.6%2C485.6)'%3E%3Crect x='613' y='40.4' width='150' height='150' ry='50' rx='50' style='fill%3A%23fff%3Bstroke-width%3A3%3Bstroke%3A%23000'%2F%3E%3Ccircle transform='translate(326.5%2C-148.5)' cx='325' cy='227.4' r='12.5' class='s0'%2F%3E%3Ccircle transform='translate(398.5%2C-76.5)' cx='325' cy='227.4' r='12.5' class='s0'%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E ");}
+    .dice-3{background-image: url("data:image/svg+xml,%3Csvg xmlns='http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg' version='1.1' viewBox='0 0 76.5 76.5' height='21.6' width='21.6'%3E%3Cstyle%3E.s0%7Bfill%3A%23000%3Bstroke-width%3A3%3Bstroke%3A%23000%3B%7D%3C%2Fstyle%3E%3Cg transform='translate(84.9%2C-515.5)'%3E%3Cg transform='matrix(0.5%2C0%2C0%2C0.5%2C-290.6%2C514.9)'%3E%3Crect x='413' y='2.9' width='150' height='150' ry='50' rx='50' style='fill%3A%23fff%3Bstroke-width%3A3%3Bstroke%3A%23000'%2F%3E%3Ccircle transform='translate(126.5%2C-186)' cx='325' cy='227.4' r='12.5' class='s0'%2F%3E%3Ccircle transform='translate(198.5%2C-114)' cx='325' cy='227.4' r='12.5' class='s0'%2F%3E%3Ccircle transform='translate(162.5%2C-150)' cx='325' cy='227.4' r='12.5' class='s0'%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E ");}
+    .dice-4{background-image: url("data:image/svg+xml,%3Csvg xmlns='http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg' version='1.1' viewBox='0 0 76.5 76.5' height='21.6' width='21.6'%3E%3Cstyle%3E.s0%7Bfill%3A%23000%3Bstroke-width%3A3%3Bstroke%3A%23000%3B%7D%3C%2Fstyle%3E%3Cg transform='translate(90.7%2C-499.7)'%3E%3Cg transform='matrix(0.5%2C0%2C0%2C0.5%2C-302.7%2C367.8)'%3E%3Crect x='425.5' y='265.4' width='150' height='150' ry='50' rx='50' style='fill%3A%23fff%3Bstroke-width%3A3%3Bstroke%3A%23000'%2F%3E%3Ccircle transform='translate(139%2C76.5)' cx='325' cy='227.4' r='12.5' class='s0'%2F%3E%3Ccircle transform='translate(139%2C148.5)' cx='325' cy='227.4' r='12.5' class='s0'%2F%3E%3Ccircle transform='translate(211%2C76.5)' cx='325' cy='227.4' r='12.5' class='s0'%2F%3E%3Ccircle transform='translate(211%2C148.5)' cx='325' cy='227.4' r='12.5' class='s0'%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E ");}
+    .dice-5{background-image: url("data:image/svg+xml,%3Csvg xmlns='http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg' version='1.1' viewBox='0 0 76.5 76.5' height='21.6' width='21.6'%3E%3Cstyle%3E.s0%7Bfill%3A%23000%3Bstroke-width%3A3%3Bstroke%3A%23000%3B%7D%3C%2Fstyle%3E%3Cg transform='translate(89.2%2C-510.5)'%3E%3Cg transform='matrix(0.5%2C0%2C0%2C0.5%2C-194.9%2C372.3)'%3E%3Crect x='213' y='277.9' width='150' height='150' ry='50' rx='50' style='fill%3A%23fff%3Bstroke-width%3A3%3Bstroke%3A%23000'%2F%3E%3Ccircle transform='translate(-73.5%2C89)' cx='325' cy='227.4' r='12.5' class='s0'%2F%3E%3Ccircle transform='translate(-73.5%2C161)' cx='325' cy='227.4' r='12.5' class='s0'%2F%3E%3Ccircle transform='translate(-1.5%2C89)' cx='325' cy='227.4' r='12.5' class='s0'%2F%3E%3Ccircle transform='translate(-1.5%2C161)' cx='325' cy='227.4' r='12.5' class='s0'%2F%3E%3Ccircle transform='translate(-37.5%2C125)' cx='325' cy='227.4' r='12.5' class='s0'%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E ");}
+    .dice-6{background-image: url("data:image/svg+xml,%3Csvg xmlns='http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg' version='1.1' viewBox='0 0 76.5 76.5' height='21.6' width='21.6'%3E%3Cstyle%3E.s0%7Bfill%3A%23000%3Bstroke-width%3A3%3Bstroke%3A%23000%3B%7D%3C%2Fstyle%3E%3Cg transform='translate(86.2%2C-500.6)'%3E%3Cg transform='matrix(0.5%2C0%2C0%2C0.5%2C-98.2%2C356.2)'%3E%3Crect x='25.5' y='290.4' width='150' height='150' ry='50' rx='50' style='fill%3A%23fff%3Bstroke-width%3A3%3Bstroke%3A%23000'%2F%3E%3Ccircle transform='translate(-261%2C101.5)' cx='325' cy='227.4' r='12.5' class='s0'%2F%3E%3Ccircle transform='translate(-261%2C173.5)' cx='325' cy='227.4' r='12.5' class='s0'%2F%3E%3Ccircle transform='translate(-261%2C137.5)' cx='325' cy='227.4' r='12.5' class='s0'%2F%3E%3Ccircle transform='translate(-189%2C101.5)' cx='325' cy='227.4' r='12.5' class='s0'%2F%3E%3Ccircle transform='translate(-189%2C173.5)' cx='325' cy='227.4' r='12.5' class='s0'%2F%3E%3Ccircle transform='translate(-189%2C137.5)' cx='325' cy='227.4' r='12.5' class='s0'%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E");}
+    </style>
+</head>
+<body>
+  <h1>🎲 Dice Throw Simulator 🎲</h1>
+  <ul></ul>
+  <div id="buttons">
+    <button id="add">Add Dice</button>
+    <button id="remove">Remove Dice</button>
+    <button id="roll">Roll</button>
+  </div>
+  <p class="info">Remove or add and click each dice to lock/unlock it. Press the "Roll" button to roll.</p>
+  <footer>
+    <p>Written by <a href="https://christianheilmann.com">Chris Heilmann</a>, available for feedback on <a href="https://github.com/codepo8/dice-throw-simulator/">GitHub</a></p>
+  </footer>
+  <script>
+
+    const addbutton = document.querySelector('#add');
+    const removebutton = document.querySelector('#remove');
+    const rollbutton = document.querySelector('#roll');
+    const list = document.querySelector('ul');
+    let dices = [];
+    let numberofdices = 5;
+
+    const paintdices = amount => {
+      let out = '';
+      for(let i = 0; i < amount;i++) {
+        let val = dicevalue(1,5);
+        out += `
+        <li>
+          <label class="dice dice-${val}" 
+                  data-value="${val}"
+                  data-active="true">
+            <input type="checkbox" name="dices">
+          </label>
+        </li>
+        `;
+      }
+      list.innerHTML = out;
+      list.style.fontSize = 65/amount  + 'vw'
+    };
+    const dicevalue = (min, max) => {
+      return (Math.floor(Math.pow(10,14)*Math.random()*Math.random())%(max-min+1))+min;
+    }
+
+    const shuffle = (dice, amount) => {
+      --amount;
+      if (amount > 0) {
+        let value = dicevalue(1,6);
+        dices[dice].dataset.value = value;
+        dices[dice].style.translate = `${(Math.random() * 10) -5}px ${(Math.random() * 10) -5}px`;
+        dices[dice].className = "dice dice-" + value;
+        window.setTimeout('shuffle('+dice+', '+amount+')', 100);
+      } else {
+        rollbutton.disabled = false;
+        dices.forEach(d => {
+          d.style.translate = `0 0`;
+        });
+      }
+    };
+
+    const roll = e => {
+      dices = [];
+      let active = document.querySelectorAll('.dice');
+      active.forEach(a => {
+        if (a.dataset.active === 'true') {
+          dices.push(a);
+        }
+      });
+      dices.forEach((d,i) => {
+        shuffle(i, 20);
+      })
+      rollbutton.disabled = true;
+      e.preventDefault();
+    };
+    const fixdices = e => {
+      let t = e.target;
+      if (t.nodeName === 'LABEL') {
+        t.dataset.active = t.querySelector('input').checked;
+      }
+    }
+    const adddice = e => {
+      numberofdices++;
+      paintdices(numberofdices);
+    };
+    const removedice = e => {
+      numberofdices--;
+      paintdices(numberofdices);
+    };
+    addbutton.addEventListener('click', adddice);
+    removebutton.addEventListener('click', removedice);
+    rollbutton.addEventListener('click', roll);
+    list.addEventListener('click', fixdices);
+    paintdices(5);
+
+  </script>
+</body>
+</html>
