@@ -5,26 +5,26 @@
     "display": "fullscreen",
     "name": "Dice",
     "orientation": "landscape",
-    "scope": "/",
+    "scope": "/codepo8/dice-throw-simulator/",
     "short_name": "Dice",
-    "start_url": "/",
+    "start_url": "/codepo8/dice-throw-simulator/",
     "theme_color": "#ffffff",
     "categories": [],
     "screenshots": [
       {
-        "src": "/screenshot-1.png",
+        "src": "/codepo8/dice-throw-simulator/screenshot-1.png",
         "sizes": "1280x800",
         "type": "image/png"
       },
       {
-        "src": "/screenshot-2.png",
+        "src": "/codepo8/dice-throw-simulator/screenshot-2.png",
         "sizes": "750x1334",
         "type": "image/png"
       }
     ],
     "icons": [
       {
-        "src": "/dice.png"
+        "src": "/codepo8/dice-throw-simulator/dice.png"
       }
     ],
     "shortcuts": []
