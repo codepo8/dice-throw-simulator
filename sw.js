@@ -1,7 +1,7 @@
 var CACHE_NAME = 'version_01'
 var URLS = [           
   '/',                 
-  '/index.html'
+  '/dice-throw-simulator/index.html'
 ]
 
 // Respond with cached resources
