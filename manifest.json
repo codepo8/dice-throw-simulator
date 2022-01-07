@@ -1,0 +1,31 @@
+{
+    "background_color": "#ffffff",
+    "description": "A dice simulator",
+    "dir": "ltr",
+    "display": "fullscreen",
+    "name": "Dice",
+    "orientation": "landscape",
+    "scope": "/",
+    "short_name": "Dice",
+    "start_url": "/",
+    "theme_color": "#ffffff",
+    "categories": [],
+    "screenshots": [
+      {
+        "src": "/screenshot-1.png",
+        "sizes": "1280x800",
+        "type": "image/png"
+      },
+      {
+        "src": "/screenshot-2.png",
+        "sizes": "750x1334",
+        "type": "image/png"
+      }
+    ],
+    "icons": [
+      {
+        "src": "/dice.png"
+      }
+    ],
+    "shortcuts": []
+  }

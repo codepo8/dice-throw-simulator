@@ -110,6 +110,10 @@
   </footer>
 
 <script>
+    if (navigator.serviceWorker) {
+      navigator.serviceWorker.register('sw.js', {scope: '/'})
+    }
+
     const addbutton = document.querySelector('#add');
     const removebutton = document.querySelector('#remove');
     const rollbutton = document.querySelector('#roll');
