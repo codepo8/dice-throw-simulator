@@ -24,18 +24,13 @@
     ],
     "icons": [
         {
-          "src": "/images/icons-vector.svg",
-          "type": "image/svg+xml",
-          "sizes": "512x512"
-        },
-        {
-          "src": "/dice-throw-simulator/icon.pmg",
+          "src": "/dice-throw-simulator/icon.png",
           "type": "image/png",
           "sizes": "192x192"
         },
         {
-        "src": "/dice-throw-simulator/icon.pmg",
-        "type": "image/png",
+        "src": "/dice-throw-simulator/icon.png",
+            "type": "image/png",
           "sizes": "512x512"
         }
       ],
