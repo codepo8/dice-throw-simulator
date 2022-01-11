@@ -26,12 +26,7 @@
         {
           "src": "/dice-throw-simulator/dice.png",
           "type": "image/png",
-          "sizes": "192x192"
-        },
-        {
-        "src": "/dice-throw-simulator/dice.png",
-            "type": "image/png",
-          "sizes": "512x512"
+          "sizes": "1280x1280"
         }
       ],
      "shortcuts": []
