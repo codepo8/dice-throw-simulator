@@ -6,10 +6,10 @@
   <title>🎲 Dice Throw Simulator</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎲</text></svg>">
   <link rel="canonical" href="https://codepo8.github.io/dice-throw-simulator/" />
-    <link rel="manifest" href="/dice-throw-simulator/manifest.json">
+  <link rel="manifest" href="/dice-throw-simulator/manifest.json">
   <style>
     :root {
-      --dice-size: 20;
+      --dice-size: 18;
     }
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -27,7 +27,7 @@
       padding: 30px 0;
       display: flex;
       flex-wrap: wrap;
-      font-size: calc(var(--dice-size) * 1vmin);
+      font-size: calc(var(--dice-size) * 1.2vmin);
       justify-content: center;
     }
     label {
@@ -62,7 +62,7 @@
       flex: 1 0;
       margin: 0 5px;
       font-family: inherit;
-      font-size: 2vw;
+      font-size: 7vmin;
       padding: 5px;
       cursor: pointer;
       background:lightgray;
@@ -86,7 +86,8 @@
       display: block;
       text-align:right;
       color: #999;
-      padding: 10px;
+      font-size: 2vmin;
+      padding: 5px;
     }
     footer a {color: #ccc;}
     /*
@@ -111,7 +112,7 @@
     <button id="remove" title="Remove Dice" aria-label="Remove Dice">-</button>
     <button id="roll">Roll</button>
   </div>
-  <p class="info">Remove or add and click each dice to lock/unlock it. Press the "Roll" button to roll.</p>
+  <p class="info">Remove or add and click each dice to lock/unlock it. Press the "Roll" button or hit Enter to roll.</p>
   <footer>
     <p>Written by <a href="https://christianheilmann.com">Chris Heilmann</a>, available for feedback on <a href="https://github.com/codepo8/dice-throw-simulator/">GitHub</a></p>
   </footer>
@@ -143,7 +144,7 @@
         `;
       }
       list.innerHTML = out;
-      document.querySelector(':root').style.setProperty('--dice-size', Math.min(100/amount, 20));
+      document.querySelector(':root').style.setProperty('--dice-size', Math.min(100/amount,18));
     };
 
     const dicevalue = (min, max) => {
@@ -203,6 +204,11 @@
     rollbutton.addEventListener('click', roll);
     list.addEventListener('click', fixdices);
     paintdices(5);
+    document.addEventListener('keyup', e => {
+      if (e.keyCode === 13) {
+        roll(e);
+      }
+    });
 
   </script>
 </body>
