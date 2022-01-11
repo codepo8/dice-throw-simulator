@@ -8,6 +8,9 @@
   <link rel="canonical" href="https://codepo8.github.io/dice-throw-simulator/" />
     <link rel="manifest" href="/dice-throw-simulator/manifest.json">
   <style>
+    :root {
+      --dice-size: 20;
+    }
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 2em;
@@ -23,6 +26,7 @@
       margin: 0;
       padding: 30px 0;
       display: flex;
+      font-size: calc(var(--dice-size) * 1vmin);
       justify-content: center;
     }
     label {
@@ -138,7 +142,7 @@
         `;
       }
       list.innerHTML = out;
-      list.style.fontSize = 65/amount  + 'vmin';
+      document.querySelector(':root').style.setProperty('--dice-size', Math.min(100/amount, 20));
     };
 
     const dicevalue = (min, max) => {
