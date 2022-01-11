@@ -196,8 +196,10 @@
       paintdices(numberofdices);
     };
     const removedice = e => {
-      numberofdices--;
-      paintdices(numberofdices);
+      if(numberofdices > 1) {
+        numberofdices--;
+        paintdices(numberofdices);
+      }
     };
     addbutton.addEventListener('click', adddice);
     removebutton.addEventListener('click', removedice);
