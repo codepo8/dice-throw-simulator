@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dice</title>
+    <style>
+        body{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <button>Roll</button>
+    <label for="n">How many?</label>
+    <select name="num" id="n">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option selected>5</option>
+    </select>
+        <output></output>
+    <script>
+        let b = document.querySelector('button');
+        let o = document.querySelector('output');
+        b.addEventListener('click', ev => {
+            let amount = +n.value;
+                o.innerHTML+= '<p>';
+                for(i=0;i<amount;i++) {
+                    o.innerHTML+= (parseInt(Math.random()*6,10)+1)+'   ';
+                }
+                o.innerHTML+= "</p>";
+
+        })
+        o.addEventListener('click', ev => {
+            o.innerHTML = '';
+
+        })
+    </script> 
+</body>
+</html>
