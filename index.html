@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🎲 Dice Throw Simulator</title>
+  <title>Offline Dice Throw Simulator</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎲</text></svg>">
   <link rel="canonical" href="https://codepo8.github.io/dice-throw-simulator/" />
   <link rel="manifest" href="/dice-throw-simulator/manifest.json">
@@ -11,15 +11,33 @@
     :root {
       --dice-size: 18;
     }
+    /* a.help {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      font-size: 1em;
+      text-decoration: none;
+      border: 1px solid #333;
+      color: #333;
+      display:block;
+      padding: 5px;
+      width: 1em;
+      height: 1em;
+      text-align: center;
+      border-radius: 50% 50%;
+    }*/
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 2em;
       background: #333;
     }
     h1 {
-      font-size:2.5vw;
+      font-size:2.5vmax;
       font-weight: normal;
+      margin: 0;
       color: blanchedalmond;
+      /* position: absolute;
+      top: -100vh; */
     }
     ul {
       background: #eeeeee;
@@ -29,6 +47,7 @@
       flex-wrap: wrap;
       font-size: calc(var(--dice-size) * 1.2vmin);
       justify-content: center;
+      /* min-height: 40vh; */
     }
     label {
       position: relative;
@@ -105,7 +124,8 @@
     </style>
 </head>
 <body>
-  <h1>🎲 Dice Throw Simulator 🎲</h1>
+  <h1>Dice Throw Simulator</h1>
+  <a class="help" href="#help">?</a>
   <ul></ul>
   <div id="buttons">
     <button id="add" title="Add Dice" aria-label="Add Dice">+</button>
@@ -176,7 +196,7 @@
         }
       });
       dices.forEach((d,i) => {
-        shuffle(i, 20);
+        shuffle(i, 10);
       })
       rollbutton.disabled = true;
       e.preventDefault();
