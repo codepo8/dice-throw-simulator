@@ -1,5 +1,5 @@
 var APP_PREFIX = 'dicethrow_';
-var VERSION = 'version_05';
+var VERSION = 'version_06';
 var CACHE_NAME = APP_PREFIX + VERSION
 var URLS = [    
   '/dice-throw-simulator/',
